@@ -15,7 +15,9 @@ import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as EvacuationRouteImport } from './routes/evacuation'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RiskMapRouteImport } from './routes/risk-map'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SimulatorRouteImport } from './routes/simulator'
 
 const IndexRoute = IndexRouteImport.update({
@@ -48,9 +50,19 @@ const ReportsRoute = ReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RiskMapRoute = RiskMapRouteImport.update({
   id: '/risk-map',
   path: '/risk-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SimulatorRoute = SimulatorRouteImport.update({
@@ -66,7 +78,9 @@ export interface FileRoutesByFullPath {
   '/evacuation': typeof EvacuationRoute
   '/planner': typeof PlannerRoute
   '/reports': typeof ReportsRoute
+  '/resources': typeof ResourcesRoute
   '/risk-map': typeof RiskMapRoute
+  '/settings': typeof SettingsRoute
   '/simulator': typeof SimulatorRoute
 }
 export interface FileRoutesByTo {
@@ -76,7 +90,9 @@ export interface FileRoutesByTo {
   '/evacuation': typeof EvacuationRoute
   '/planner': typeof PlannerRoute
   '/reports': typeof ReportsRoute
+  '/resources': typeof ResourcesRoute
   '/risk-map': typeof RiskMapRoute
+  '/settings': typeof SettingsRoute
   '/simulator': typeof SimulatorRoute
 }
 export interface FileRoutesById {
@@ -87,7 +103,9 @@ export interface FileRoutesById {
   '/evacuation': typeof EvacuationRoute
   '/planner': typeof PlannerRoute
   '/reports': typeof ReportsRoute
+  '/resources': typeof ResourcesRoute
   '/risk-map': typeof RiskMapRoute
+  '/settings': typeof SettingsRoute
   '/simulator': typeof SimulatorRoute
 }
 export interface FileRouteTypes {
@@ -99,7 +117,9 @@ export interface FileRouteTypes {
     | '/evacuation'
     | '/planner'
     | '/reports'
+    | '/resources'
     | '/risk-map'
+    | '/settings'
     | '/simulator'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -109,7 +129,9 @@ export interface FileRouteTypes {
     | '/evacuation'
     | '/planner'
     | '/reports'
+    | '/resources'
     | '/risk-map'
+    | '/settings'
     | '/simulator'
   id:
     | '__root__'
@@ -119,7 +141,9 @@ export interface FileRouteTypes {
     | '/evacuation'
     | '/planner'
     | '/reports'
+    | '/resources'
     | '/risk-map'
+    | '/settings'
     | '/simulator'
   fileRoutesById: FileRoutesById
 }
@@ -130,7 +154,9 @@ export interface RootRouteChildren {
   EvacuationRoute: typeof EvacuationRoute
   PlannerRoute: typeof PlannerRoute
   ReportsRoute: typeof ReportsRoute
+  ResourcesRoute: typeof ResourcesRoute
   RiskMapRoute: typeof RiskMapRoute
+  SettingsRoute: typeof SettingsRoute
   SimulatorRoute: typeof SimulatorRoute
 }
 
@@ -178,11 +204,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/risk-map': {
       id: '/risk-map'
       path: '/risk-map'
       fullPath: '/risk-map'
       preLoaderRoute: typeof RiskMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/simulator': {
@@ -202,7 +242,9 @@ const rootRouteChildren: RootRouteChildren = {
   EvacuationRoute: EvacuationRoute,
   PlannerRoute: PlannerRoute,
   ReportsRoute: ReportsRoute,
+  ResourcesRoute: ResourcesRoute,
   RiskMapRoute: RiskMapRoute,
+  SettingsRoute: SettingsRoute,
   SimulatorRoute: SimulatorRoute,
 }
 export const routeTree = rootRouteImport
