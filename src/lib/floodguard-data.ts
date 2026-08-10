@@ -547,11 +547,10 @@ export function scenarioFor(rainfall: number) {
 
 /** Deterministic per-ward risk shift as rainfall rises. */
 export function wardRiskAt(ward: Ward, rainfall: number): RiskLevel {
-  const order: RiskLevel[] = ["very-low", "low", "moderate", "high", "critical"];
   const shifted = ward.score + (rainfall - 40) * 0.75;
-  if (shifted >= 82) return order[4];
-  if (shifted >= 64) return order[3];
-  if (shifted >= 45) return order[2];
-  if (shifted >= 25) return order[1];
-  return order[0];
+  if (shifted >= 82) return "critical";
+  if (shifted >= 64) return "high";
+  if (shifted >= 45) return "moderate";
+  if (shifted >= 25) return "low";
+  return "very-low";
 }
