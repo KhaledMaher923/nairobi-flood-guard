@@ -7,10 +7,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AppSidebar } from "@/components/floodguard/app-sidebar";
+import { TopBar } from "@/components/floodguard/top-bar";
+import { MobileNav } from "@/components/floodguard/mobile-nav";
+import { FloodGuardAssistant } from "@/components/floodguard/assistant";
+import { EmergencyProvider, useEmergency } from "@/components/floodguard/emergency-context";
 
 function NotFoundComponent() {
   return (
