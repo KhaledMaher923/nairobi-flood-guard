@@ -14,6 +14,7 @@ import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as RiskMapRouteImport } from './routes/risk-map'
+import { Route as SimulatorRouteImport } from './routes/simulator'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const RiskMapRoute = RiskMapRouteImport.update({
   path: '/risk-map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SimulatorRoute = SimulatorRouteImport.update({
+  id: '/simulator',
+  path: '/simulator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/emergency': typeof EmergencyRoute
   '/planner': typeof PlannerRoute
   '/risk-map': typeof RiskMapRoute
+  '/simulator': typeof SimulatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/emergency': typeof EmergencyRoute
   '/planner': typeof PlannerRoute
   '/risk-map': typeof RiskMapRoute
+  '/simulator': typeof SimulatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,22 @@ export interface FileRoutesById {
   '/emergency': typeof EmergencyRoute
   '/planner': typeof PlannerRoute
   '/risk-map': typeof RiskMapRoute
+  '/simulator': typeof SimulatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/alerts' | '/emergency' | '/planner' | '/risk-map'
+  fullPaths:
+    '/' | '/alerts' | '/emergency' | '/planner' | '/risk-map' | '/simulator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/alerts' | '/emergency' | '/planner' | '/risk-map'
-  id: '__root__' | '/' | '/alerts' | '/emergency' | '/planner' | '/risk-map'
+  to: '/' | '/alerts' | '/emergency' | '/planner' | '/risk-map' | '/simulator'
+  id:
+    | '__root__'
+    | '/'
+    | '/alerts'
+    | '/emergency'
+    | '/planner'
+    | '/risk-map'
+    | '/simulator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   EmergencyRoute: typeof EmergencyRoute
   PlannerRoute: typeof PlannerRoute
   RiskMapRoute: typeof RiskMapRoute
+  SimulatorRoute: typeof SimulatorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RiskMapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/simulator': {
+      id: '/simulator'
+      path: '/simulator'
+      fullPath: '/simulator'
+      preLoaderRoute: typeof SimulatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +150,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmergencyRoute: EmergencyRoute,
   PlannerRoute: PlannerRoute,
   RiskMapRoute: RiskMapRoute,
+  SimulatorRoute: SimulatorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
