@@ -70,6 +70,7 @@ export function NairobiMap({
       viewBox="0 0 1000 700"
       className={cn("h-full w-full select-none", className)}
       role="img"
+      preserveAspectRatio="xMidYMid slice"
       aria-label="Interactive Nairobi flood risk map"
     >
       <defs>
