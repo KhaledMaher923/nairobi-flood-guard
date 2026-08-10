@@ -173,7 +173,7 @@ function Planner() {
                 <ul className="mt-4 space-y-2">
                   {r.hazards.map((h) => (
                     <li key={h} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      {r.tone === undefined && null}
+                      
                       <ShieldAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: RISK_META[r.risk].fill }} />
                       {h}
                     </li>
